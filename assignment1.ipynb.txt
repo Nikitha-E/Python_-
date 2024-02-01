@@ -1,0 +1,423 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "c9778b87-a271-4566-8349-ec6da1d24012",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Requirement already satisfied: pandas in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (2.1.1)\n",
+      "Requirement already satisfied: numpy>=1.23.2 in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from pandas) (1.26.0)\n",
+      "Requirement already satisfied: python-dateutil>=2.8.2 in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from pandas) (2.8.2)\n",
+      "Requirement already satisfied: pytz>=2020.1 in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from pandas) (2023.3.post1)\n",
+      "Requirement already satisfied: tzdata>=2022.1 in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from pandas) (2023.3)\n",
+      "Requirement already satisfied: six>=1.5 in c:\\users\\nikithaelangovan\\appdata\\local\\programs\\python\\python311\\lib\\site-packages (from python-dateutil>=2.8.2->pandas) (1.16.0)\n",
+      "Note: you may need to restart the kernel to use updated packages.\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "[notice] A new release of pip is available: 23.2.1 -> 23.3.2\n",
+      "[notice] To update, run: python.exe -m pip install --upgrade pip\n"
+     ]
+    }
+   ],
+   "source": [
+    "pip install pandas"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "2d5694cc-e268-492b-91f4-d6eab9052418",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "068ce048-848e-45cf-a2f1-881280bb4c14",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df=pd.read_csv('Sales Transactions-2018.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "002f7b0d-4bf5-4630-80b2-4d155be9dc20",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_1=pd.read_csv('Sales Transactions-2017.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "048c46ec-6376-433c-a845-b52479b5799e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_new=df.drop(labels=['Product','Party','Voucher','Date','Voucher Amount','Disc'],axis=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "id": "a9f40354-5e19-40d6-beaa-7d14555616b1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_neww=df_new.head(10)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "f4f5e2c1-49e9-4898-81f0-118e434d4544",
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [],
+   "source": [
+    "df1_new=df_1.drop(labels=['Product','Party','Voucher','Date','Voucher Amount','Disc'],axis=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "bf9f85bd-f482-473a-bcbe-e9c1cbb59cdb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df1_neww=df1_new.head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "90bf77cb-e18f-41cf-8e0c-f4729234c9a1",
+   "metadata": {},
+   "source": [
+    "MERGE"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "f2d1afce-1e74-40fc-80bd-aa577f8e2e9c",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Qty</th>\n",
+       "      <th>Rate_x</th>\n",
+       "      <th>Gross_x</th>\n",
+       "      <th>Rate_y</th>\n",
+       "      <th>Gross_y</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>5</td>\n",
+       "      <td>290</td>\n",
+       "      <td>1,450.00</td>\n",
+       "      <td>1,690.00</td>\n",
+       "      <td>8,450.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>145</td>\n",
+       "      <td>290</td>\n",
+       "      <td>1,690.00</td>\n",
+       "      <td>3,380.00</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "  Qty Rate_x   Gross_x    Rate_y   Gross_y\n",
+       "0   5    290  1,450.00  1,690.00  8,450.00\n",
+       "1   2    145       290  1,690.00  3,380.00"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "pd.merge(df_neww,df1_neww,on='Qty',how='inner')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1527baf7-0900-42aa-83ee-d54ac9d86410",
+   "metadata": {},
+   "source": [
+    "#GROUPBY"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 73,
+   "id": "38e29b63-75d5-4ee6-9ccc-43f9d9179b4f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "df_groupby=pd.DataFrame(df_neww.groupby(by='Rate'))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "id": "d8519feb-ee25-41b0-a579-bafc9b23a412",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>0</th>\n",
+       "      <th>1</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>11</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "3  400   11  4,400.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>145</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "8   2  145       290\n",
+       "9  2...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>290</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "1   5  290  1,450.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>5.5</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "2  1,600.00  5.5  8...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>8.1</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "4  600  8.1  4,860.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>85</td>\n",
+       "      <td>Qty Rate     Gross\n",
+       "0  50   85  4,250.00</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>89</td>\n",
+       "      <td>Qty Rate Gross\n",
+       "5  10   89   890\n",
+       "6  10   89  ...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     0                                                  1\n",
+       "0   11           Qty Rate     Gross\n",
+       "3  400   11  4,400.00\n",
+       "1  145    Qty Rate     Gross\n",
+       "8   2  145       290\n",
+       "9  2...\n",
+       "2  290            Qty Rate     Gross\n",
+       "1   5  290  1,450.00\n",
+       "3  5.5          Qty Rate     Gross\n",
+       "2  1,600.00  5.5  8...\n",
+       "4  8.1           Qty Rate     Gross\n",
+       "4  600  8.1  4,860.00\n",
+       "5   85            Qty Rate     Gross\n",
+       "0  50   85  4,250.00\n",
+       "6   89    Qty Rate Gross\n",
+       "5  10   89   890\n",
+       "6  10   89  ..."
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df_groupby"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7019d435-a48a-4d63-a461-427e1ee92195",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "974a144f-11b4-4ef2-894d-111637bab7bf",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f6220704-799c-4ac4-a77a-12ddb838a35d",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0eb9ab44-6212-4bb0-8c1e-3db69f99ea57",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "302f3893-44ea-400d-9cda-9a72bd3ec0b8",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d4bb2636-301f-44a3-8605-f0e890bf2693",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ab77f783-f008-4f9e-9b66-8b4eb07888ee",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "562a700a-dea8-4e23-b80b-97b827c37ff3",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3741024a-64f2-48ec-987c-b4a909799a34",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2cd4e628-75a8-4a6d-8b7e-b4a5b71884ac",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3b801af1-7052-46e7-bf23-5ccac72d5095",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
